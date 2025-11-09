@@ -1,0 +1,181 @@
+# Arquivos no diretório config/locales são usados para internacionalização e
+# são automaticamente carregados pelo Rails. Se você quiser usar idiomas além do
+# inglês, adicione os arquivos necessários neste diretório.
+#
+# Para usar os idiomas, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# Nas views, isso é abreviado para apenas `t`:
+#
+#     <%= t("hello") %>
+#
+# Para usar um idioma diferente, defina-o com `I18n.locale`:
+#
+#     I18n.locale = :pt-BR
+#
+# Isso usaria as informações em config/locales/pt-BR.yml.
+#
+# Para saber mais sobre a API, leia o guia de Internacionalização do Rails
+# em https://guides.rubyonrails.org/i18n.html.
+#
+# Esteja ciente de que YAML interpreta as seguintes strings insensíveis a maiúsculas/minúsculas como
+# booleanos: `true`, `false`, `on`, `off`, `yes`, `no`. Portanto, essas strings
+# devem ser colocadas entre aspas para serem interpretadas como strings. Por exemplo:
+#
+#     pt-BR:
+#       "yes": sim
+#       enabled: "ON"
+
+pt-BR:
+  hello: "Olá mundo"
+  
+  # Elementos comuns da interface
+  common:
+    actions:
+      new: "Novo"
+      create: "Criar"
+      edit: "Editar"
+      update: "Atualizar"
+      delete: "Excluir"
+      cancel: "Cancelar"
+      save: "Salvar"
+      back: "Voltar"
+    status:
+      completed: "Concluído"
+      created: "Criado em %{date}"
+    confirmation:
+      are_you_sure: "Tem certeza?"
+  
+  # Listas
+  lists:
+    title: "Minhas Listas"
+    subtitle: "Organize suas tarefas com listas personalizadas"
+    new_list: "Nova Lista"
+    create_new: "Criar Nova Lista"
+    create_subtitle: "Adicione uma nova lista para organizar suas tarefas"
+    edit_list: "Editar Lista"
+    edit_subtitle: "Atualize as informações da sua lista"
+    back_to_lists: "Voltar para Listas"
+    back_to_list: "Voltar para Lista"
+    
+    empty_state:
+      title: "Nenhuma lista"
+      description: "Comece criando uma nova lista."
+    
+    form:
+      name_label: "Nome"
+      name_placeholder: "Digite o nome da lista"
+      description_label: "Descrição"
+      description_placeholder: "Digite a descrição da lista (opcional)"
+      description_hint: "Breve descrição do propósito desta lista."
+      create_button: "Criar Lista"
+      update_button: "Atualizar Lista"
+    
+    show:
+      tasks_title: "Tarefas"
+      task_count:
+        one: "%{count} tarefa"
+        other: "%{count} tarefas"
+    
+    card:
+      all_done: "Tudo Pronto!"
+      empty: "Vazia"
+      completed: "concluída"
+      pending: "pendente"
+      view: "Visualizar"
+    
+    flash:
+      created: "Lista criada com sucesso."
+      updated: "Lista atualizada com sucesso."
+      deleted: "Lista excluída com sucesso."
+    
+    delete:
+      title: "Excluir Lista"
+      message: "Tem certeza que deseja excluir '%{name}' e todas as suas tarefas? Esta ação não pode ser desfeita."
+  
+  # Todos/Tarefas
+  todos:
+    title: "Tarefas"
+    new_task: "Adicionar Tarefa"
+    create_new: "Criar Nova Tarefa"
+    create_subtitle: "Adicione uma nova tarefa a %{list_name}"
+    edit_task: "Editar Tarefa"
+    edit_subtitle: "Atualize as informações da tarefa de %{list_name}"
+    back_to_list: "Voltar para %{list_name}"
+    back_to_task: "Voltar para Tarefa"
+    
+    empty_state:
+      title: "Nenhuma tarefa"
+      description: "Comece adicionando uma tarefa a esta lista."
+      first_task_button: "Adicionar Sua Primeira Tarefa"
+    
+    form:
+      name_label: "Nome da Tarefa"
+      name_placeholder: "Digite o nome da tarefa"
+      description_label: "Descrição"
+      description_placeholder: "Digite a descrição da tarefa (opcional)"
+      description_hint: "Forneça detalhes adicionais sobre esta tarefa."
+      completed_label: "Concluída"
+      completed_hint: "Marcar esta tarefa como concluída"
+      create_button: "Criar Tarefa"
+      update_button: "Atualizar Tarefa"
+    
+    item:
+      edit_title: "Editar tarefa"
+      delete_title: "Excluir tarefa"
+    
+    show:
+      from_list: "Da lista:"
+      description_title: "Descrição"
+      no_description: "Nenhuma descrição fornecida"
+      created_label: "Criado em"
+      last_updated_label: "Última Atualização"
+      mark_as_pending: "Marcar como Pendente"
+      mark_as_completed: "Marcar como Concluída"
+      edit_task: "Editar Tarefa"
+      delete_task: "Excluir Tarefa"
+    
+    status:
+      completed: "Concluída"
+      pending: "Pendente"
+    
+    flash:
+      created: "Tarefa criada com sucesso."
+      updated: "Tarefa atualizada com sucesso."
+      deleted: "Tarefa excluída com sucesso."
+      status_updated: "Status da tarefa atualizado."
+    
+    delete:
+      title: "Excluir Tarefa"
+      message: "Tem certeza que deseja excluir '%{name}'? Esta ação não pode ser desfeita."
+  
+  # Validações do ActiveRecord
+  activerecord:
+    models:
+      list:
+        one: "Lista"
+        other: "Listas"
+      todo:
+        one: "Tarefa"
+        other: "Tarefas"
+    
+    attributes:
+      list:
+        name: "Nome"
+        description: "Descrição"
+      todo:
+        name: "Nome da Tarefa"
+        description: "Descrição"
+        completed: "Concluída"
+    
+    errors:
+      models:
+        list:
+          attributes:
+            name:
+              blank: "não pode ficar em branco"
+        todo:
+          attributes:
+            name:
+              blank: "não pode ficar em branco"
