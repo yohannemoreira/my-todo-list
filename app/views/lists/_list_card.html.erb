@@ -1,77 +1,76 @@
-<div class="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-lg transition-all duration-200 border <%= list.all_completed? ? 'border-green-300 ring-2 ring-green-200' : 'border-gray-200' %>">
+<div class="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-lg transition-all duration-200 border <%= list.all_completed? ? 'border-green-300 ring-2 ring-green-200' : 'border-gray-200' %> cursor-pointer hover:border-indigo-300" onclick="window.location='<%= list_path(list) %>'">
   <div class="p-6">
-    <div class="flex items-start justify-between mb-3">
-      <h3 class="text-lg font-semibold text-gray-900 flex-1 pr-3">
-        <%= link_to list.name, list, class: "hover:text-indigo-600 transition-colors" %>
-      </h3>
+      <div class="flex items-start justify-between mb-3">
+        <h3 class="text-lg font-semibold text-gray-900 flex-1 pr-3 hover:text-indigo-600 transition-colors">
+          <%= list.name %>
+        </h3>
+        
+        <% if list.all_completed? %>
+          <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 border border-green-300 whitespace-nowrap">
+            ✓ <%= t('lists.card.all_done') %>
+          </span>
+        <% elsif list.total_todos_count > 0 %>
+          <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 whitespace-nowrap">
+            <%= list.completion_percentage %>%
+          </span>
+        <% else %>
+          <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600 whitespace-nowrap">
+            <%= t('lists.card.empty') %>
+          </span>
+        <% end %>
+      </div>
       
-      <% if list.all_completed? %>
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 border border-green-300 whitespace-nowrap">
-          ✓ <%= t('lists.card.all_done') %>
-        </span>
-      <% elsif list.total_todos_count > 0 %>
-        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 whitespace-nowrap">
-          <%= list.completion_percentage %>%
-        </span>
-      <% else %>
-        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600 whitespace-nowrap">
-          <%= t('lists.card.empty') %>
-        </span>
+      <% if list.description.present? %>
+        <p class="text-sm text-gray-600 mb-4 line-clamp-2"><%= list.description %></p>
       <% end %>
-    </div>
-    
-    <% if list.description.present? %>
-      <p class="text-sm text-gray-600 mb-4 line-clamp-2"><%= list.description %></p>
-    <% end %>
 
-    <% if list.total_todos_count > 0 %>
-      <div class="mb-4">
-        <div class="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
-          <div class="<%= list.all_completed? ? 'bg-green-500' : 'bg-indigo-600' %> h-2.5 rounded-full transition-all duration-500" 
-               style="width: <%= list.completion_percentage %>%">
+      <% if list.total_todos_count > 0 %>
+        <div class="mb-4">
+          <div class="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+            <div class="<%= list.all_completed? ? 'bg-green-500' : 'bg-indigo-600' %> h-2.5 rounded-full transition-all duration-500" 
+                 style="width: <%= list.completion_percentage %>%">
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-
-    <div class="flex items-center gap-4 mb-4">
-      <div class="flex items-center text-sm">
-        <svg class="w-4 h-4 mr-1.5 <%= list.all_completed? ? 'text-green-600' : 'text-indigo-600' %>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-        <span class="font-medium text-gray-900"><%= list.completed_todos_count %></span>
-        <span class="text-gray-500 ml-1"><%= t('lists.card.completed') %></span>
-      </div>
-      
-      <div class="flex items-center text-sm">
-        <svg class="w-4 h-4 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-        <span class="font-medium text-gray-900"><%= list.pending_todos_count %></span>
-        <span class="text-gray-500 ml-1"><%= t('lists.card.pending') %></span>
-      </div>
-    </div>
-
-    <div class="flex items-center justify-between pt-4 border-t border-gray-200">
-      <div class="flex space-x-4">
-        <%= link_to list, class: "text-sm text-indigo-600 hover:text-indigo-800 font-medium transition-colors" do %>
-          <%= t('lists.card.view') %>
-        <% end %>
-        <%= link_to edit_list_path(list), class: "text-sm text-gray-600 hover:text-gray-800 font-medium transition-colors" do %>
-          <%= t('common.actions.edit') %>
-        <% end %>
-      </div>
-      <%= button_to list, 
-          method: :delete, 
-          data: { 
-            controller: "delete",
-            action: "click->delete#confirm",
-            delete_title_value: t('lists.delete.title'),
-            delete_message_value: t('lists.delete.message', name: list.name)
-          }, 
-          class: "text-sm text-red-600 hover:text-red-800 font-medium transition-colors" do %>
-        <%= t('common.actions.delete') %>
       <% end %>
+
+      <div class="flex items-center gap-4 mb-4">
+        <div class="flex items-center text-sm">
+          <svg class="w-4 h-4 mr-1.5 <%= list.all_completed? ? 'text-green-600' : 'text-indigo-600' %>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span class="font-medium text-gray-900"><%= list.completed_todos_count %></span>
+          <span class="text-gray-500 ml-1"><%= t('lists.card.completed') %></span>
+        </div>
+        
+        <div class="flex items-center text-sm">
+          <svg class="w-4 h-4 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span class="font-medium text-gray-900"><%= list.pending_todos_count %></span>
+          <span class="text-gray-500 ml-1"><%= t('lists.card.pending') %></span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+        <div class="flex space-x-4">
+          <%= link_to edit_list_path(list), onclick: "event.stopPropagation(); return true;", class: "text-sm text-gray-600 hover:text-gray-800 font-medium transition-colors" do %>
+            <%= t('common.actions.edit') %>
+          <% end %>
+        </div>
+        <%= button_to list, 
+            method: :delete, 
+            onclick: "event.stopPropagation(); return true;",
+            data: { 
+              controller: "delete",
+              action: "click->delete#confirm",
+              delete_title_value: t('lists.delete.title'),
+              delete_message_value: t('lists.delete.message', name: list.name)
+            }, 
+            class: "text-sm text-red-600 hover:text-red-800 font-medium transition-colors" do %>
+          <%= t('common.actions.delete') %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
