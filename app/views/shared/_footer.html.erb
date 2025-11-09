@@ -1,0 +1,19 @@
+<footer class="fixed bottom-0 left-0 right-0 bg-transparent">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+    <div class="flex justify-end items-center">
+      <div class="flex items-center space-x-0.5 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-sm border border-gray-200/50">
+        <%= button_to switch_locale_path(locale: :en), 
+              method: :post,
+              class: "px-2 py-0.5 text-xs font-medium rounded-full transition-colors #{I18n.locale == :en ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'}" do %>
+          EN
+        <% end %>
+        <span class="text-gray-300">|</span>
+        <%= button_to switch_locale_path(locale: 'pt-BR'), 
+              method: :post,
+              class: "px-2 py-0.5 text-xs font-medium rounded-full transition-colors #{I18n.locale.to_s == 'pt-BR' ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'}" do %>
+          PT
+        <% end %>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "lists#index"
   
+  # Locale switching
+  post "switch_locale", to: "application#switch_locale", as: :switch_locale
+  
   resources :lists do
     resources :todos do
       member do
