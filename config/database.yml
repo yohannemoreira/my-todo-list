@@ -24,20 +24,30 @@ test:
 # Store production database in the storage/ directory, which by default
 # is mounted as a persistent Docker volume in config/deploy.yml.
 production:
-  adapter: postgresql
-  encoding: unicode
   primary:
-    <<: *default
+    adapter: postgresql
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    timeout: 5000
     url: <%= ENV['DATABASE_URL'] %>
   cache:
-    <<: *default
+    adapter: postgresql
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    timeout: 5000
     url: <%= ENV['DATABASE_URL'] %>
     migrations_paths: db/cache_migrate
   queue:
-    <<: *default
+    adapter: postgresql
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    timeout: 5000
     url: <%= ENV['DATABASE_URL'] %>
     migrations_paths: db/queue_migrate
   cable:
-    <<: *default
+    adapter: postgresql
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    timeout: 5000
     url: <%= ENV['DATABASE_URL'] %>
     migrations_paths: db/cable_migrate
