@@ -97,10 +97,11 @@ A aplicação é construída sobre quatro modelos principais:
 
 ### Relacionamentos
 
-```
-User (1) ──── (N) Session
-  │
-  └──── (N) List (1) ──── (N) Todo
+```mermaid
+erDiagram
+    User ||--o{ Session : has
+    User ||--o{ List : has
+    List ||--o{ Todo : contains
 ```
 
 ---
@@ -238,53 +239,47 @@ RAILS_ENV=production bin/rails server
 
 ### Diagrama ER
 
-```
-┌─────────────────┐
-│     users       │
-├─────────────────┤
-│ id              │
-│ email_address   │◄───┐
-│ password_digest │    │
-│ created_at      │    │
-│ updated_at      │    │
-└─────────────────┘    │
-                       │
-                       │
-┌─────────────────┐    │
-│    sessions     │    │
-├─────────────────┤    │
-│ id              │    │
-│ user_id         │────┘
-│ ip_address      │
-│ user_agent      │
-│ created_at      │
-│ updated_at      │
-└─────────────────┘
-
-┌─────────────────┐
-│     lists       │
-├─────────────────┤
-│ id              │
-│ name            │
-│ description     │
-│ user_id         │────┐
-│ created_at      │    │
-│ updated_at      │    │
-└─────────────────┘    │
-        ▲              │
-        │              │
-        │              │
-┌─────────────────┐    │
-│     todos       │    │
-├─────────────────┤    │
-│ id              │    │
-│ name            │    │
-│ description     │    │
-│ completed       │    │
-│ list_id         │────┘
-│ created_at      │
-│ updated_at      │
-└─────────────────┘
+```mermaid
+erDiagram
+    users ||--o{ sessions : "has many"
+    users ||--o{ lists : "has many"
+    lists ||--o{ todos : "has many"
+    
+    users {
+        int id PK
+        string email_address UK
+        string password_digest
+        datetime created_at
+        datetime updated_at
+    }
+    
+    sessions {
+        int id PK
+        int user_id FK
+        string ip_address
+        string user_agent
+        datetime created_at
+        datetime updated_at
+    }
+    
+    lists {
+        int id PK
+        string name
+        string description
+        int user_id FK
+        datetime created_at
+        datetime updated_at
+    }
+    
+    todos {
+        int id PK
+        string name
+        string description
+        boolean completed
+        int list_id FK
+        datetime created_at
+        datetime updated_at
+    }
 ```
 
 ### Migrações
@@ -304,30 +299,19 @@ A aplicação implementa um sistema de autenticação completo e seguro usando o
 
 ### Fluxo de Autenticação
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    Fluxo de Autenticação                │
-└─────────────────────────────────────────────────────────┘
-
-1. Usuário acessa página protegida
-   ↓
-2. ApplicationController#require_authentication
-   ↓
-3. Verifica cookie de sessão assinado
-   ↓
-   ├─ Válido → Resume sessão → Current.session/user
-   │                           ↓
-   │                      Acesso permitido
-   │
-   └─ Inválido → Redireciona para login
-                 ↓
-            Usuário faz login
-                 ↓
-         Cria nova Session no DB
-                 ↓
-      Define cookie assinado permanente
-                 ↓
-       Redireciona para página original
+```mermaid
+flowchart TD
+    A[Usuário acessa página protegida] --> B[ApplicationController#require_authentication]
+    B --> C[Verifica cookie de sessão assinado]
+    C --> D{Cookie válido?}
+    D -->|Sim| E[Resume sessão]
+    E --> F[Current.session/user]
+    F --> G[Acesso permitido]
+    D -->|Não| H[Redireciona para login]
+    H --> I[Usuário faz login]
+    I --> J[Cria nova Session no DB]
+    J --> K[Define cookie assinado permanente]
+    K --> L[Redireciona para página original]
 ```
 
 ### Componentes de Autenticação
