@@ -1,16 +1,16 @@
 <div class="min-h-screen bg-gray-50 py-8">
   <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="mb-4">
-      <%= render 'shared/back_link', path: lists_path, text: 'Back to Lists' %>
+      <%= render 'shared/back_link', path: lists_path, text: t('lists.back_to_lists') %>
     </div>
 
     <%= render 'shared/page_header', 
-        title: 'Create New List', 
-        subtitle: 'Add a new list to organize your tasks' %>
+        title: t('lists.create_new'), 
+        subtitle: t('lists.create_subtitle') %>
 
     <div class="bg-white shadow-sm rounded-lg border border-gray-200">
       <div class="px-6 py-5">
-        <%= render 'form', list: @list, cancel_path: lists_path, submit_text: 'Create List' %>
+        <%= render 'form', list: @list, cancel_path: lists_path, submit_text: t('lists.form.create_button') %>
       </div>
     </div>
   </div>

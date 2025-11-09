@@ -29,3 +29,153 @@
 
 en:
   hello: "Hello world"
+  
+  # Common UI elements
+  common:
+    actions:
+      new: "New"
+      create: "Create"
+      edit: "Edit"
+      update: "Update"
+      delete: "Delete"
+      cancel: "Cancel"
+      save: "Save"
+      back: "Back"
+    status:
+      completed: "Done"
+      created: "Created %{date}"
+    confirmation:
+      are_you_sure: "Are you sure?"
+  
+  # Lists
+  lists:
+    title: "My Lists"
+    subtitle: "Organize your tasks with custom lists"
+    new_list: "New List"
+    create_new: "Create New List"
+    create_subtitle: "Add a new list to organize your tasks"
+    edit_list: "Edit List"
+    edit_subtitle: "Update your list information"
+    back_to_lists: "Back to Lists"
+    back_to_list: "Back to List"
+    
+    empty_state:
+      title: "No lists"
+      description: "Get started by creating a new list."
+    
+    form:
+      name_label: "Name"
+      name_placeholder: "Enter list name"
+      description_label: "Description"
+      description_placeholder: "Enter list description (optional)"
+      description_hint: "Brief description of what this list is for."
+      create_button: "Create List"
+      update_button: "Update List"
+    
+    show:
+      tasks_title: "Tasks"
+      task_count:
+        one: "%{count} task"
+        other: "%{count} tasks"
+    
+    card:
+      all_done: "All Done!"
+      empty: "Empty"
+      completed: "completed"
+      pending: "pending"
+      view: "View"
+    
+    flash:
+      created: "List was successfully created."
+      updated: "List was successfully updated."
+      deleted: "List was successfully deleted."
+    
+    delete:
+      title: "Delete List"
+      message: "Are you sure you want to delete '%{name}' and all its tasks? This action cannot be undone."
+  
+  # Todos/Tasks
+  todos:
+    title: "Tasks"
+    new_task: "Add Task"
+    create_new: "Create New Task"
+    create_subtitle: "Add a new task to %{list_name}"
+    edit_task: "Edit Task"
+    edit_subtitle: "Update task information for %{list_name}"
+    back_to_list: "Back to %{list_name}"
+    back_to_task: "Back to Task"
+    
+    empty_state:
+      title: "No tasks"
+      description: "Get started by adding a task to this list."
+      first_task_button: "Add Your First Task"
+    
+    form:
+      name_label: "Task Name"
+      name_placeholder: "Enter task name"
+      description_label: "Description"
+      description_placeholder: "Enter task description (optional)"
+      description_hint: "Provide additional details about this task."
+      completed_label: "Completed"
+      completed_hint: "Mark this task as completed"
+      create_button: "Create Task"
+      update_button: "Update Task"
+    
+    item:
+      edit_title: "Edit task"
+      delete_title: "Delete task"
+    
+    show:
+      from_list: "From list:"
+      description_title: "Description"
+      no_description: "No description provided"
+      created_label: "Created"
+      last_updated_label: "Last Updated"
+      mark_as_pending: "Mark as Pending"
+      mark_as_completed: "Mark as Completed"
+      edit_task: "Edit Task"
+      delete_task: "Delete Task"
+    
+    status:
+      completed: "Completed"
+      pending: "Pending"
+    
+    flash:
+      created: "Task was successfully created."
+      updated: "Task was successfully updated."
+      deleted: "Task was successfully deleted."
+      status_updated: "Task status updated."
+    
+    delete:
+      title: "Delete Task"
+      message: "Are you sure you want to delete '%{name}'? This action cannot be undone."
+  
+  # ActiveRecord validations
+  activerecord:
+    models:
+      list:
+        one: "List"
+        other: "Lists"
+      todo:
+        one: "Task"
+        other: "Tasks"
+    
+    attributes:
+      list:
+        name: "Name"
+        description: "Description"
+      todo:
+        name: "Task Name"
+        description: "Description"
+        completed: "Completed"
+    
+    errors:
+      models:
+        list:
+          attributes:
+            name:
+              blank: "can't be blank"
+        todo:
+          attributes:
+            name:
+              blank: "can't be blank"

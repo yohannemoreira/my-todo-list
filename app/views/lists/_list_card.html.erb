@@ -7,7 +7,7 @@
       
       <% if list.all_completed? %>
         <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 border border-green-300 whitespace-nowrap">
-          ✓ All Done!
+          ✓ <%= t('lists.card.all_done') %>
         </span>
       <% elsif list.total_todos_count > 0 %>
         <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 whitespace-nowrap">
@@ -15,7 +15,7 @@
         </span>
       <% else %>
         <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600 whitespace-nowrap">
-          Empty
+          <%= t('lists.card.empty') %>
         </span>
       <% end %>
     </div>
@@ -40,7 +40,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
         <span class="font-medium text-gray-900"><%= list.completed_todos_count %></span>
-        <span class="text-gray-500 ml-1">completed</span>
+        <span class="text-gray-500 ml-1"><%= t('lists.card.completed') %></span>
       </div>
       
       <div class="flex items-center text-sm">
@@ -48,17 +48,17 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
         <span class="font-medium text-gray-900"><%= list.pending_todos_count %></span>
-        <span class="text-gray-500 ml-1">pending</span>
+        <span class="text-gray-500 ml-1"><%= t('lists.card.pending') %></span>
       </div>
     </div>
 
     <div class="flex items-center justify-between pt-4 border-t border-gray-200">
       <div class="flex space-x-4">
         <%= link_to list, class: "text-sm text-indigo-600 hover:text-indigo-800 font-medium transition-colors" do %>
-          View
+          <%= t('lists.card.view') %>
         <% end %>
         <%= link_to edit_list_path(list), class: "text-sm text-gray-600 hover:text-gray-800 font-medium transition-colors" do %>
-          Edit
+          <%= t('common.actions.edit') %>
         <% end %>
       </div>
       <%= button_to list, 
@@ -66,11 +66,11 @@
           data: { 
             controller: "delete",
             action: "click->delete#confirm",
-            delete_title_value: "Delete List",
-            delete_message_value: "Are you sure you want to delete '#{list.name}' and all its tasks? This action cannot be undone."
+            delete_title_value: t('lists.delete.title'),
+            delete_message_value: t('lists.delete.message', name: list.name)
           }, 
           class: "text-sm text-red-600 hover:text-red-800 font-medium transition-colors" do %>
-        Delete
+        <%= t('common.actions.delete') %>
       <% end %>
     </div>
   </div>

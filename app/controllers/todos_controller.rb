@@ -20,7 +20,7 @@ class TodosController < ApplicationController
     @todo = @list.todos.new(todo_params)
 
     if @todo.save
-      redirect_to list_path(@list), notice: "Task was successfully created."
+      redirect_to list_path(@list), notice: t('todos.flash.created')
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class TodosController < ApplicationController
 
   def update
     if @todo.update(todo_params)
-      redirect_to list_path(@list), notice: "Task was successfully updated."
+      redirect_to list_path(@list), notice: t('todos.flash.updated')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -36,12 +36,12 @@ class TodosController < ApplicationController
 
   def toggle
     @todo.update(completed: !@todo.completed)
-    redirect_to list_path(@list), notice: "Task status updated."
+    redirect_to list_path(@list), notice: t('todos.flash.status_updated')
   end
 
   def destroy
     @todo.destroy
-    redirect_to list_path(@list), notice: "Task was successfully deleted."
+    redirect_to list_path(@list), notice: t('todos.flash.deleted')
   end
 
   private

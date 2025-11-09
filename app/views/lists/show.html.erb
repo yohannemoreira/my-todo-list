@@ -1,7 +1,7 @@
 <div class="min-h-screen bg-gray-50 py-8">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="mb-4">
-      <%= render 'shared/back_link', path: lists_path, text: 'Back to Lists' %>
+      <%= render 'shared/back_link', path: lists_path, text: t('lists.back_to_lists') %>
     </div>
 
     <%= render 'shared/notice_flash' %>
@@ -20,10 +20,10 @@
                   <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
                   <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
                 </svg>
-                <%= pluralize(@todos.count, 'task') %>
+                <%= t('lists.show.task_count', count: @todos.count) %>
               </span>
               <span>•</span>
-              <span>Created <%= @list.created_at.strftime('%B %d, %Y') %></span>
+              <span><%= t('common.status.created', date: @list.created_at.strftime('%B %d, %Y')) %></span>
             </div>
           </div>
           <div class="flex space-x-2 ml-4">
@@ -31,21 +31,21 @@
               <svg class="-ml-0.5 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
               </svg>
-              Edit
+              <%= t('common.actions.edit') %>
             <% end %>
             <%= button_to @list, 
                 method: :delete, 
                 data: { 
                   controller: "delete",
                   action: "click->delete#confirm",
-                  delete_title_value: "Delete List",
-                  delete_message_value: "Are you sure you want to delete '#{@list.name}' and all its tasks? This action cannot be undone."
+                  delete_title_value: t('lists.delete.title'),
+                  delete_message_value: t('lists.delete.message', name: @list.name)
                 }, 
                 class: "inline-flex items-center px-3 py-2 border border-red-300 shadow-sm text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors" do %>
               <svg class="-ml-0.5 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
               </svg>
-              Delete
+              <%= t('common.actions.delete') %>
             <% end %>
           </div>
         </div>
@@ -55,12 +55,12 @@
     <div class="bg-white shadow-sm rounded-lg border border-gray-200">
       <div class="px-6 py-5 border-b border-gray-200">
         <div class="flex justify-between items-center">
-          <h2 class="text-lg font-semibold text-gray-900">Tasks</h2>
+          <h2 class="text-lg font-semibold text-gray-900"><%= t('lists.show.tasks_title') %></h2>
           <%= link_to new_list_todo_path(@list), class: "inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors" do %>
             <svg class="-ml-0.5 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
-            Add Task
+            <%= t('todos.new_task') %>
           <% end %>
         </div>
       </div>
@@ -72,10 +72,10 @@
         <% else %>
           <%= render 'shared/empty_state',
               icon_path: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
-              title: 'No tasks',
-              description: 'Get started by adding a task to this list.',
+              title: t('todos.empty_state.title'),
+              description: t('todos.empty_state.description'),
               button_path: new_list_todo_path(@list),
-              button_text: 'Add Your First Task' %>
+              button_text: t('todos.empty_state.first_task_button') %>
         <% end %>
       </div>
     </div>

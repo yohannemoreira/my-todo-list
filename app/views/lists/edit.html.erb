@@ -1,16 +1,16 @@
 <div class="min-h-screen bg-gray-50 py-8">
   <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="mb-4">
-      <%= render 'shared/back_link', path: @list, text: 'Back to List' %>
+      <%= render 'shared/back_link', path: @list, text: t('lists.back_to_list') %>
     </div>
 
     <%= render 'shared/page_header', 
-        title: 'Edit List', 
-        subtitle: 'Update your list information' %>
+        title: t('lists.edit_list'), 
+        subtitle: t('lists.edit_subtitle') %>
 
     <div class="bg-white shadow-sm rounded-lg border border-gray-200">
       <div class="px-6 py-5">
-        <%= render 'form', list: @list, cancel_path: @list, submit_text: 'Update List' %>
+        <%= render 'form', list: @list, cancel_path: @list, submit_text: t('lists.form.update_button') %>
       </div>
     </div>
   </div>
