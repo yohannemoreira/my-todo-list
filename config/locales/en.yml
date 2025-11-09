@@ -30,6 +30,16 @@
 en:
   hello: "Hello world"
   
+  date:
+    formats:
+      short: "%d %b, %Y"
+      long: "%B %d, %Y at %I:%M %p"
+  
+  time:
+    formats:
+      short: "%d %b, %Y"
+      long: "%B %d, %Y at %I:%M %p"
+  
   app:
     name: "My Todo List"
   

@@ -23,7 +23,7 @@
                 <%= t('lists.show.task_count', count: @todos.count) %>
               </span>
               <span>•</span>
-              <span><%= t('common.status.created', date: @list.created_at.strftime('%B %d, %Y')) %></span>
+              <span><%= t('common.status.created', date: l(@list.created_at, format: :short)) %></span>
             </div>
           </div>
           <div class="flex space-x-2 ml-4">

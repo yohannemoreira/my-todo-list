@@ -62,11 +62,11 @@
           <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <dt class="text-sm font-medium text-gray-500"><%= t('todos.show.created_label') %></dt>
-              <dd class="mt-1 text-sm text-gray-900"><%= @todo.created_at.strftime('%B %d, %Y at %I:%M %p') %></dd>
+              <dd class="mt-1 text-sm text-gray-900"><%= l(@todo.created_at, format: :long) %></dd>
             </div>
             <div>
               <dt class="text-sm font-medium text-gray-500"><%= t('todos.show.last_updated_label') %></dt>
-              <dd class="mt-1 text-sm text-gray-900"><%= @todo.updated_at.strftime('%B %d, %Y at %I:%M %p') %></dd>
+              <dd class="mt-1 text-sm text-gray-900"><%= l(@todo.updated_at, format: :long) %></dd>
             </div>
           </dl>
         </div>
