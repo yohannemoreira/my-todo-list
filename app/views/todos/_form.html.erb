@@ -1,0 +1,40 @@
+<%= form_with(model: [list, todo], class: "space-y-6") do |form| %>
+  <%= render 'shared/error_messages', object: todo %>
+
+  <div>
+    <%= form.label :name, "Task Name", class: "block text-sm font-medium text-gray-700 mb-2" %>
+    <%= form.text_field :name, 
+        class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm #{'border-red-300' if todo.errors[:name].any?}",
+        placeholder: "Enter task name" %>
+    <% if todo.errors[:name].any? %>
+      <p class="mt-2 text-sm text-red-600"><%= todo.errors[:name].first %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :description, class: "block text-sm font-medium text-gray-700 mb-2" %>
+    <%= form.text_area :description, 
+        rows: 4,
+        class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm",
+        placeholder: "Enter task description (optional)" %>
+    <p class="mt-2 text-sm text-gray-500">Provide additional details about this task.</p>
+  </div>
+
+  <div class="flex items-start">
+    <div class="flex items-center h-5">
+      <%= form.check_box :completed, 
+          class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" %>
+    </div>
+    <div class="ml-3 text-sm">
+      <%= form.label :completed, class: "font-medium text-gray-700" %>
+      <p class="text-gray-500">Mark this task as completed</p>
+    </div>
+  </div>
+
+  <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+    <%= link_to "Cancel", cancel_path, 
+        class: "px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors" %>
+    <%= form.submit submit_text, 
+        class: "inline-flex justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors" %>
+  </div>
+<% end %>
