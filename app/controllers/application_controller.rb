@@ -9,9 +9,4 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = session[:locale] || I18n.default_locale
   end
-
-  def switch_locale
-    session[:locale] = params[:locale]
-    redirect_back(fallback_location: root_path)
-  end
 end

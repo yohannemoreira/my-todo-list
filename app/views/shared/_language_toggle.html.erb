@@ -1,0 +1,13 @@
+<div class="flex items-center gap-1 bg-gray-50 rounded-lg px-2 py-1.5 border border-gray-200">
+  <%= button_to switch_locale_path(locale: :en), 
+        method: :post,
+        class: "px-2.5 py-1 text-xs font-medium rounded-md transition-all #{I18n.locale == :en ? 'bg-indigo-600 text-white shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'}" do %>
+    EN
+  <% end %>
+  <span class="text-gray-300 text-xs">|</span>
+  <%= button_to switch_locale_path(locale: 'pt-BR'), 
+        method: :post,
+        class: "px-2.5 py-1 text-xs font-medium rounded-md transition-all #{I18n.locale.to_s == 'pt-BR' ? 'bg-indigo-600 text-white shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'}" do %>
+    PT
+  <% end %>
+</div>

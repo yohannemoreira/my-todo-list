@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   root "lists#index"
   
   # Locale switching
-  post "switch_locale", to: "application#switch_locale", as: :switch_locale
+  post "switch_locale", to: "locales#update", as: :switch_locale
   
   resources :lists do
     resources :todos do
