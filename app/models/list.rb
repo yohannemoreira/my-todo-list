@@ -1,4 +1,5 @@
 class List < ApplicationRecord
+  belongs_to :user, optional: true
   has_many :todos, dependent: :destroy
 
   validates :name, presence: true

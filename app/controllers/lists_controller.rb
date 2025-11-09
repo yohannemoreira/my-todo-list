@@ -2,7 +2,7 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   def index
-    @lists = List.all.order(created_at: :desc)
+    @lists = Current.user.lists.order(created_at: :desc)
   end
 
   def show
@@ -10,14 +10,14 @@ class ListsController < ApplicationController
   end
 
   def new
-    @list = List.new
+    @list = Current.user.lists.build
   end
 
   def edit
   end
 
   def create
-    @list = List.new(list_params)
+    @list = Current.user.lists.build(list_params)
 
     if @list.save
       redirect_to @list, notice: t('lists.flash.created')
@@ -42,7 +42,7 @@ class ListsController < ApplicationController
   private
 
   def set_list
-    @list = List.find(params[:id])
+    @list = Current.user.lists.find(params[:id])
   end
 
   def list_params

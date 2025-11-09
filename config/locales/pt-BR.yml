@@ -30,7 +30,9 @@
 pt-BR:
   hello: "Olá mundo"
   
-  # Elementos comuns da interface
+  app:
+    name: "My Todo List"
+  
   common:
     actions:
       new: "Novo"
@@ -47,7 +49,7 @@ pt-BR:
     confirmation:
       are_you_sure: "Tem certeza?"
   
-  # Listas
+
   lists:
     title: "Minhas Listas"
     subtitle: "Organize suas tarefas com listas personalizadas"
@@ -93,7 +95,6 @@ pt-BR:
       title: "Excluir Lista"
       message: "Tem certeza que deseja excluir '%{name}' e todas as suas tarefas? Esta ação não pode ser desfeita."
   
-  # Todos/Tarefas
   todos:
     title: "Tarefas"
     new_task: "Adicionar Tarefa"
@@ -148,7 +149,53 @@ pt-BR:
       title: "Excluir Tarefa"
       message: "Tem certeza que deseja excluir '%{name}'? Esta ação não pode ser desfeita."
   
-  # Validações do ActiveRecord
+  auth:
+    sessions:
+      title: "Login to your account"
+      subtitle: "Enter your email below to login to your account"
+      email_label: "Email"
+      email_placeholder: "name@example.com"
+      password_label: "Password"
+      password_placeholder: "••••••••"
+      forgot_password: "Forgot your password?"
+      login_button: "Login"
+      logout_button: "Sair"
+    
+    passwords:
+      new:
+        title: "Esqueceu sua senha?"
+        subtitle: "Digite seu email para receber as instruções de recuperação"
+        submit_button: "Enviar instruções"
+        back_button: "Voltar"
+        back_to_login: "Lembrou sua senha?"
+        login_link: "Fazer login"
+      
+      edit:
+        title: "Redefinir senha"
+        subtitle: "Digite sua nova senha abaixo"
+        password_label: "Nova senha"
+        password_placeholder: "Digite a nova senha"
+        password_confirmation_label: "Confirmar senha"
+        password_confirmation_placeholder: "Repita a nova senha"
+        submit_button: "Salvar nova senha"
+        back_to_login: "Voltar ao login"
+      
+      mailer:
+        reset:
+          subject: "Redefinir sua senha"
+          greeting: "Olá!"
+          body_html: "Você pode redefinir sua senha nos próximos 15 minutos"
+          link_text: "nesta página de redefinição de senha"
+          body_text: "Você pode redefinir sua senha nos próximos 15 minutos nesta página de redefinição de senha:"
+    
+    flash:
+      invalid_credentials: "Email ou senha incorretos."
+      rate_limit: "Tente novamente mais tarde."
+      password_reset_sent: "Instruções para redefinir a senha foram enviadas (se o usuário existir)."
+      password_reset_success: "Senha redefinida com sucesso."
+      password_mismatch: "As senhas não coincidem."
+      invalid_reset_link: "Link de redefinição de senha inválido ou expirado."
+  
   activerecord:
     models:
       list:
@@ -166,6 +213,10 @@ pt-BR:
         name: "Nome da Tarefa"
         description: "Descrição"
         completed: "Concluída"
+      user:
+        email_address: "Email"
+        password: "Senha"
+        password_confirmation: "Confirmação de senha"
     
     errors:
       models:

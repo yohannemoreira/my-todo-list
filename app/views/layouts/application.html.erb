@@ -22,10 +22,28 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-gray-50 pb-16">
+  <body class="bg-gray-50 <%= 'pb-16' unless controller_name == 'sessions' || controller_name == 'passwords' %>">
+    <% if Current.user && controller_name != 'sessions' && controller_name != 'passwords' %>
+      <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+          <div class="flex items-center gap-4">
+            <%= link_to root_path, class: "font-semibold text-gray-900 hover:text-blue-600" do %>
+              <%= t('app.name') %>
+            <% end %>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-sm text-gray-600"><%= Current.user.email_address %></span>
+            <%= button_to t('auth.sessions.logout_button'), session_path, method: :delete, class: "text-sm text-red-600 hover:text-red-700 font-medium" %>
+          </div>
+        </div>
+      </header>
+    <% end %>
+    
     <%= yield %>
     
-    <%= render 'shared/delete_modal' %>
-    <%= render 'shared/footer' %>
+    <% unless controller_name == 'sessions' || controller_name == 'passwords' %>
+      <%= render 'shared/delete_modal' %>
+      <%= render 'shared/footer' %>
+    <% end %>
   </body>
 </html>

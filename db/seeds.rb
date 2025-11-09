@@ -2,11 +2,16 @@
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
+user = User.find_or_create_by!(email_address: "usuario@exemplo.com") do |u|
+  u.password = "senha123"
+  u.password_confirmation = "senha123"
+end
+
 Todo.destroy_all
 List.destroy_all
 
 
-mercado = List.create!(
+mercado = user.lists.create!(
   name: "Compras do Mercado",
   description: "Lista de compras para a semana"
 )
@@ -22,7 +27,7 @@ mercado.todos.create!([
   { name: "Ovos", description: "2 dúzias", completed: true }
 ])
 
-casa = List.create!(
+casa = user.lists.create!(
   name: "Tarefas de Casa",
   description: "Limpeza e organização do lar"
 )
@@ -36,7 +41,7 @@ casa.todos.create!([
   { name: "Organizar armários", description: "Revisar e organizar armários da cozinha", completed: false }
 ])
 
-trabalho = List.create!(
+trabalho = user.lists.create!(
   name: "Projetos de Trabalho",
   description: "Tarefas profissionais da semana"
 )
@@ -51,7 +56,7 @@ trabalho.todos.create!([
   { name: "Atualizar tarefas no Jira", description: "Mover cards para Done", completed: true }
 ])
 
-estudos = List.create!(
+estudos = user.lists.create!(
   name: "Estudos e Aprendizado",
   description: "Materiais para estudar e cursos"
 )
@@ -64,7 +69,7 @@ estudos.todos.create!([
   { name: "Assistir palestra sobre DevOps", description: "Conferência online às 19h", completed: false }
 ])
 
-viagem = List.create!(
+viagem = user.lists.create!(
   name: "Viagem de Fim de Semana",
   description: "Preparativos para a viagem à praia"
 )
@@ -79,7 +84,7 @@ viagem.todos.create!([
   { name: "Preparar playlist", description: "Criar playlist para a viagem", completed: true }
 ])
 
-saude = List.create!(
+saude = user.lists.create!(
   name: "Academia e Saúde",
   description: "Rotina de exercícios e cuidados com a saúde"
 )
@@ -93,7 +98,7 @@ saude.todos.create!([
   { name: "Beber 2 litros de água", description: "Meta diária de hidratação", completed: true }
 ])
 
-hobbies = List.create!(
+hobbies = user.lists.create!(
   name: "Hobbies e Lazer",
   description: "Atividades de entretenimento"
 )
@@ -105,7 +110,7 @@ hobbies.todos.create!([
   { name: "Praticar violão", description: "30 minutos de prática", completed: true }
 ])
 
-projetos = List.create!(
+projetos = user.lists.create!(
   name: "Projetos Pessoais",
   description: "Ideias e projetos para desenvolver"
 )

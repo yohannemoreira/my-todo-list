@@ -30,7 +30,9 @@
 en:
   hello: "Hello world"
   
-  # Common UI elements
+  app:
+    name: "My Todo List"
+  
   common:
     actions:
       new: "New"
@@ -47,7 +49,6 @@ en:
     confirmation:
       are_you_sure: "Are you sure?"
   
-  # Lists
   lists:
     title: "My Lists"
     subtitle: "Organize your tasks with custom lists"
@@ -93,7 +94,6 @@ en:
       title: "Delete List"
       message: "Are you sure you want to delete '%{name}' and all its tasks? This action cannot be undone."
   
-  # Todos/Tasks
   todos:
     title: "Tasks"
     new_task: "Add Task"
@@ -148,7 +148,53 @@ en:
       title: "Delete Task"
       message: "Are you sure you want to delete '%{name}'? This action cannot be undone."
   
-  # ActiveRecord validations
+  auth:
+    sessions:
+      title: "Login to your account"
+      subtitle: "Enter your email below to login to your account"
+      email_label: "Email"
+      email_placeholder: "name@example.com"
+      password_label: "Password"
+      password_placeholder: "••••••••"
+      forgot_password: "Forgot your password?"
+      login_button: "Login"
+      logout_button: "Logout"
+    
+    passwords:
+      new:
+        title: "Forgot your password?"
+        subtitle: "Enter your email to receive recovery instructions"
+        submit_button: "Send instructions"
+        back_button: "Back"
+        back_to_login: "Remember your password?"
+        login_link: "Login"
+      
+      edit:
+        title: "Reset password"
+        subtitle: "Enter your new password below"
+        password_label: "New password"
+        password_placeholder: "Enter new password"
+        password_confirmation_label: "Confirm password"
+        password_confirmation_placeholder: "Repeat new password"
+        submit_button: "Save new password"
+        back_to_login: "Back to login"
+      
+      mailer:
+        reset:
+          subject: "Reset your password"
+          greeting: "Hello!"
+          body_html: "You can reset your password within the next 15 minutes on"
+          link_text: "this password reset page"
+          body_text: "You can reset your password within the next 15 minutes on this password reset page:"
+    
+    flash:
+      invalid_credentials: "Invalid email or password."
+      rate_limit: "Try again later."
+      password_reset_sent: "Password reset instructions sent (if user exists)."
+      password_reset_success: "Password has been reset successfully."
+      password_mismatch: "Passwords do not match."
+      invalid_reset_link: "Password reset link is invalid or has expired."
+  
   activerecord:
     models:
       list:
@@ -166,6 +212,10 @@ en:
         name: "Task Name"
         description: "Description"
         completed: "Completed"
+      user:
+        email_address: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
     
     errors:
       models:
