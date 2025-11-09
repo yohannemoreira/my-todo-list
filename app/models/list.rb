@@ -9,7 +9,7 @@ class List < ApplicationRecord
   end
 
   def pending_todos_count
-    todos.where(completed: [false, nil]).count
+    todos.where(completed: [ false, nil ]).count
   end
 
   def total_todos_count

@@ -20,11 +20,11 @@ class ListTest < ActiveSupport::TestCase
   test "destroys dependent todos when list is destroyed" do
     list = lists(:one)
     todo_ids = list.todos.pluck(:id)
-    
+
     assert_difference "Todo.count", -list.todos.count do
       list.destroy
     end
-    
+
     todo_ids.each do |id|
       assert_nil Todo.find_by(id: id)
     end
@@ -35,7 +35,7 @@ class ListTest < ActiveSupport::TestCase
     list.todos.create!(name: "Todo 1", completed: true)
     list.todos.create!(name: "Todo 2", completed: true)
     list.todos.create!(name: "Todo 3", completed: false)
-    
+
     assert_equal 2, list.completed_todos_count
   end
 
@@ -48,7 +48,7 @@ class ListTest < ActiveSupport::TestCase
     list = List.create!(name: "Test List")
     list.todos.create!(name: "Todo 1", completed: false)
     list.todos.create!(name: "Todo 2", completed: false)
-    
+
     assert_equal 0, list.completed_todos_count
   end
 
@@ -57,7 +57,7 @@ class ListTest < ActiveSupport::TestCase
     list.todos.create!(name: "Todo 1", completed: false)
     list.todos.create!(name: "Todo 2", completed: false)
     list.todos.create!(name: "Todo 3", completed: true)
-    
+
     assert_equal 2, list.pending_todos_count
   end
 
@@ -66,7 +66,7 @@ class ListTest < ActiveSupport::TestCase
     list.todos.create!(name: "Todo 1", completed: nil)
     list.todos.create!(name: "Todo 2", completed: false)
     list.todos.create!(name: "Todo 3", completed: true)
-    
+
     assert_equal 2, list.pending_todos_count
   end
 
@@ -74,7 +74,7 @@ class ListTest < ActiveSupport::TestCase
     list = List.create!(name: "Test List")
     list.todos.create!(name: "Todo 1", completed: true)
     list.todos.create!(name: "Todo 2", completed: true)
-    
+
     assert_equal 0, list.pending_todos_count
   end
 
@@ -83,7 +83,7 @@ class ListTest < ActiveSupport::TestCase
     list.todos.create!(name: "Todo 1", completed: true)
     list.todos.create!(name: "Todo 2", completed: false)
     list.todos.create!(name: "Todo 3", completed: true)
-    
+
     assert_equal 3, list.total_todos_count
   end
 
@@ -98,7 +98,7 @@ class ListTest < ActiveSupport::TestCase
     list.todos.create!(name: "Todo 2", completed: true)
     list.todos.create!(name: "Todo 3", completed: false)
     list.todos.create!(name: "Todo 4", completed: false)
-    
+
     assert_equal 50, list.completion_percentage
   end
 
@@ -111,7 +111,7 @@ class ListTest < ActiveSupport::TestCase
     list = List.create!(name: "Test List")
     list.todos.create!(name: "Todo 1", completed: true)
     list.todos.create!(name: "Todo 2", completed: true)
-    
+
     assert_equal 100, list.completion_percentage
   end
 
@@ -119,7 +119,7 @@ class ListTest < ActiveSupport::TestCase
     list = List.create!(name: "Test List")
     list.todos.create!(name: "Todo 1", completed: false)
     list.todos.create!(name: "Todo 2", completed: false)
-    
+
     assert_equal 0, list.completion_percentage
   end
 
@@ -128,7 +128,7 @@ class ListTest < ActiveSupport::TestCase
     list.todos.create!(name: "Todo 1", completed: true)
     list.todos.create!(name: "Todo 2", completed: false)
     list.todos.create!(name: "Todo 3", completed: false)
-    
+
     assert_equal 33, list.completion_percentage
   end
 
@@ -136,7 +136,7 @@ class ListTest < ActiveSupport::TestCase
     list = List.create!(name: "Test List")
     list.todos.create!(name: "Todo 1", completed: true)
     list.todos.create!(name: "Todo 2", completed: true)
-    
+
     assert list.all_completed?
   end
 
@@ -144,7 +144,7 @@ class ListTest < ActiveSupport::TestCase
     list = List.create!(name: "Test List")
     list.todos.create!(name: "Todo 1", completed: true)
     list.todos.create!(name: "Todo 2", completed: false)
-    
+
     assert_not list.all_completed?
   end
 
@@ -157,7 +157,7 @@ class ListTest < ActiveSupport::TestCase
     list = List.create!(name: "Test List")
     list.todos.create!(name: "Todo 1", completed: false)
     list.todos.create!(name: "Todo 2", completed: false)
-    
+
     assert_not list.all_completed?
   end
 end
