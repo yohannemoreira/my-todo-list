@@ -1,0 +1,118 @@
+<div class="min-h-screen bg-gray-50 py-8">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-4">
+      <%= link_to list_path(@list), class: "inline-flex items-center text-sm text-gray-600 hover:text-gray-900 transition-colors" do %>
+        <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
+        Back to <%= @list.name %>
+      <% end %>
+    </div>
+
+    <% if notice %>
+      <div class="mb-6 bg-green-50 border-l-4 border-green-400 p-4">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm text-green-700"><%= notice %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="mb-8">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900"><%= @list.name %> - Tasks</h1>
+          <p class="mt-2 text-sm text-gray-600">Manage all tasks in this list</p>
+        </div>
+        <%= link_to new_list_todo_path(@list), class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors" do %>
+          <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+          </svg>
+          New Task
+        <% end %>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-sm rounded-lg border border-gray-200">
+      <% if @todos.any? %>
+        <ul class="divide-y divide-gray-200">
+          <% @todos.each do |todo| %>
+            <li class="px-6 py-4 hover:bg-gray-50 transition-colors">
+              <div class="flex items-start justify-between">
+                <div class="flex items-start flex-1">
+                  <%= form_with(url: toggle_list_todo_path(@list, todo), method: :patch, class: "flex-shrink-0") do %>
+                    <%= button_to toggle_list_todo_path(@list, todo), method: :patch, class: "text-gray-400 hover:text-indigo-600 transition-colors" do %>
+                      <% if todo.completed %>
+                        <svg class="h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                        </svg>
+                      <% else %>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+
+                  <div class="ml-3 flex-1">
+                    <div class="flex items-center justify-between">
+                      <h3 class="text-base font-medium text-gray-900 <%= 'line-through text-gray-500' if todo.completed %>">
+                        <%= link_to todo.name, list_todo_path(@list, todo), class: "hover:text-indigo-600 transition-colors" %>
+                      </h3>
+                      <% if todo.completed %>
+                        <span class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                          Completed
+                        </span>
+                      <% else %>
+                        <span class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                          Pending
+                        </span>
+                      <% end %>
+                    </div>
+                    <% if todo.description.present? %>
+                      <p class="mt-1 text-sm text-gray-600 <%= 'line-through' if todo.completed %>"><%= todo.description %></p>
+                    <% end %>
+                    
+                    <div class="mt-3 flex space-x-4">
+                      <%= link_to list_todo_path(@list, todo), class: "text-sm text-indigo-600 hover:text-indigo-800 font-medium transition-colors" do %>
+                        View
+                      <% end %>
+                      <%= link_to edit_list_todo_path(@list, todo), class: "text-sm text-gray-600 hover:text-gray-800 font-medium transition-colors" do %>
+                        Edit
+                      <% end %>
+                      <%= button_to list_todo_path(@list, todo), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this task?" }, class: "text-sm text-red-600 hover:text-red-800 font-medium transition-colors" do %>
+                        Delete
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <div class="text-center py-12">
+          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+          </svg>
+          <h3 class="mt-2 text-sm font-medium text-gray-900">No tasks</h3>
+          <p class="mt-1 text-sm text-gray-500">Get started by creating a new task.</p>
+          <div class="mt-6">
+            <%= link_to new_list_todo_path(@list), class: "inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors" do %>
+              <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+              </svg>
+              New Task
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
