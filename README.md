@@ -54,12 +54,6 @@ Uma aplicação moderna de gerenciamento de tarefas desenvolvida com Ruby on Rai
 - **Puma** - Servidor web
 - **Rubocop** - Análise estática de código
 - **Brakeman** - Análise de segurança
-- **Capybara + Selenium** - Testes de sistema
-
-### DevOps
-- **Docker** - Containerização
-- **Kamal** - Deploy simplificado
-- **Thruster** - Cache e compressão HTTP
 
 ---
 
