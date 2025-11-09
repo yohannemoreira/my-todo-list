@@ -9,7 +9,7 @@ class ListTest < ActiveSupport::TestCase
   test "is invalid without name" do
     list = List.new
     assert_not list.valid?
-    assert_includes list.errors[:name], "can't be blank"
+    assert_includes list.errors[:name], "não pode ficar em branco"
   end
 
   test "has many todos from fixtures" do

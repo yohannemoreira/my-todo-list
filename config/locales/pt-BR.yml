@@ -151,15 +151,17 @@ pt-BR:
   
   auth:
     sessions:
-      title: "Login to your account"
-      subtitle: "Enter your email below to login to your account"
+      title: "Entrar na sua conta"
+      subtitle: "Digite seu email abaixo para entrar"
       email_label: "Email"
-      email_placeholder: "name@example.com"
-      password_label: "Password"
+      email_placeholder: "nome@exemplo.com"
+      password_label: "Senha"
       password_placeholder: "••••••••"
-      forgot_password: "Forgot your password?"
-      login_button: "Login"
+      forgot_password: "Esqueceu sua senha?"
+      login_button: "Entrar"
       logout_button: "Sair"
+      dont_have_account: "Não tem uma conta?"
+      signup_link: "Criar conta"
     
     passwords:
       new:
@@ -196,6 +198,26 @@ pt-BR:
       password_mismatch: "As senhas não coincidem."
       invalid_reset_link: "Link de redefinição de senha inválido ou expirado."
   
+  registrations:
+    title: "Criar uma conta"
+    subtitle: "Digite seus dados abaixo para criar sua conta"
+    email_label: "Email"
+    email_placeholder: "nome@exemplo.com"
+    password_label: "Senha"
+    password_placeholder: "••••••••"
+    password_hint: "Mínimo de 8 caracteres"
+    password_confirmation_label: "Confirmar senha"
+    password_confirmation_placeholder: "••••••••"
+    signup_button: "Criar conta"
+    already_have_account: "Já tem uma conta?"
+    login_link: "Entrar"
+    errors:
+      title:
+        one: "%{count} erro impediu que esta conta fosse salva:"
+        other: "%{count} erros impediram que esta conta fosse salva:"
+    flash:
+      success: "Conta criada com sucesso! Bem-vindo!"
+  
   activerecord:
     models:
       list:
@@ -228,3 +250,14 @@ pt-BR:
           attributes:
             name:
               blank: "não pode ficar em branco"
+        user:
+          attributes:
+            email_address:
+              blank: "não pode ficar em branco"
+              taken: "já está em uso"
+              invalid: "não é um email válido"
+            password:
+              blank: "não pode ficar em branco"
+              too_short: "é muito curta (mínimo de 8 caracteres)"
+            password_confirmation:
+              confirmation: "não coincide com a senha"

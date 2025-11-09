@@ -159,6 +159,8 @@ en:
       forgot_password: "Forgot your password?"
       login_button: "Login"
       logout_button: "Logout"
+      dont_have_account: "Don't have an account?"
+      signup_link: "Sign up"
     
     passwords:
       new:
@@ -195,6 +197,26 @@ en:
       password_mismatch: "Passwords do not match."
       invalid_reset_link: "Password reset link is invalid or has expired."
   
+  registrations:
+    title: "Create an account"
+    subtitle: "Enter your details below to create your account"
+    email_label: "Email"
+    email_placeholder: "name@example.com"
+    password_label: "Password"
+    password_placeholder: "••••••••"
+    password_hint: "Minimum 8 characters"
+    password_confirmation_label: "Confirm password"
+    password_confirmation_placeholder: "••••••••"
+    signup_button: "Create account"
+    already_have_account: "Already have an account?"
+    login_link: "Login"
+    errors:
+      title:
+        one: "%{count} error prevented this account from being saved:"
+        other: "%{count} errors prevented this account from being saved:"
+    flash:
+      success: "Account created successfully! Welcome!"
+  
   activerecord:
     models:
       list:
@@ -227,3 +249,14 @@ en:
           attributes:
             name:
               blank: "can't be blank"
+        user:
+          attributes:
+            email_address:
+              blank: "can't be blank"
+              taken: "is already taken"
+              invalid: "is not a valid email"
+            password:
+              blank: "can't be blank"
+              too_short: "is too short (minimum 8 characters)"
+            password_confirmation:
+              confirmation: "doesn't match password"

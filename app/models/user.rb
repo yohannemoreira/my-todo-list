@@ -3,5 +3,8 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
   has_many :lists, dependent: :destroy
 
+  validates :email_address, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :password, length: { minimum: 8 }, if: -> { new_record? || !password.nil? }
+
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 end

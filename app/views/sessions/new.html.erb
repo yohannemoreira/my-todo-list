@@ -44,5 +44,12 @@
 
       <%= form.submit t('auth.sessions.login_button'), class: "w-full bg-gray-900 hover:bg-gray-800 text-white font-medium py-3 px-4 rounded-lg transition duration-200 cursor-pointer" %>
     <% end %>
+
+    <div class="mt-6 text-center">
+      <p class="text-sm text-gray-600">
+        <%= t('auth.sessions.dont_have_account') %>
+        <%= link_to t('auth.sessions.signup_link'), new_registration_path, class: "font-medium text-blue-600 hover:text-blue-500 transition" %>
+      </p>
+    </div>
   </div>
 </div>
