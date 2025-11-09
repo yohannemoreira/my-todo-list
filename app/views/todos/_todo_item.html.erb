@@ -1,6 +1,5 @@
 <li class="group py-3 hover:bg-gray-50/50 transition-all duration-200 -mx-6 px-6 rounded-lg">
   <div class="flex items-center gap-3">
-    <!-- Checkbox -->
     <%= button_to toggle_list_todo_path(list, todo), method: :patch, class: "shrink-0 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded-full" do %>
       <% if todo.completed %>
         <svg class="h-6 w-6 text-indigo-600 hover:text-indigo-700 transition-colors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -13,7 +12,6 @@
       <% end %>
     <% end %>
 
-    <!-- Task Content -->
     <div class="flex-1 min-w-0">
       <%= link_to list_todo_path(list, todo), class: "block group-hover:text-indigo-600 transition-colors" do %>
         <div class="flex items-center gap-2 mb-0.5">
@@ -34,7 +32,6 @@
       <% end %>
     </div>
 
-    <!-- Action Buttons (always visible) -->
     <div class="flex items-center gap-1 shrink-0">
       <%= link_to edit_list_todo_path(list, todo), 
           class: "p-2 rounded-lg text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-200",

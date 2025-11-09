@@ -1,22 +1,59 @@
-<div class="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-md transition-shadow border border-gray-200">
+<div class="bg-white overflow-hidden shadow-sm rounded-lg hover:shadow-lg transition-all duration-200 border <%= list.all_completed? ? 'border-green-300 ring-2 ring-green-200' : 'border-gray-200' %>">
   <div class="p-6">
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="text-lg font-semibold text-gray-900 truncate">
+    <div class="flex items-start justify-between mb-3">
+      <h3 class="text-lg font-semibold text-gray-900 flex-1 pr-3">
         <%= link_to list.name, list, class: "hover:text-indigo-600 transition-colors" %>
       </h3>
-      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
-        <%= list.todos.count %> tasks
-      </span>
+      
+      <% if list.all_completed? %>
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 border border-green-300 whitespace-nowrap">
+          ✓ All Done!
+        </span>
+      <% elsif list.total_todos_count > 0 %>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 whitespace-nowrap">
+          <%= list.completion_percentage %>%
+        </span>
+      <% else %>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600 whitespace-nowrap">
+          Empty
+        </span>
+      <% end %>
     </div>
     
     <% if list.description.present? %>
       <p class="text-sm text-gray-600 mb-4 line-clamp-2"><%= list.description %></p>
-    <% else %>
-      <p class="text-sm text-gray-400 mb-4 italic">No description</p>
     <% end %>
 
+    <% if list.total_todos_count > 0 %>
+      <div class="mb-4">
+        <div class="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+          <div class="<%= list.all_completed? ? 'bg-green-500' : 'bg-indigo-600' %> h-2.5 rounded-full transition-all duration-500" 
+               style="width: <%= list.completion_percentage %>%">
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="flex items-center gap-4 mb-4">
+      <div class="flex items-center text-sm">
+        <svg class="w-4 h-4 mr-1.5 <%= list.all_completed? ? 'text-green-600' : 'text-indigo-600' %>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <span class="font-medium text-gray-900"><%= list.completed_todos_count %></span>
+        <span class="text-gray-500 ml-1">completed</span>
+      </div>
+      
+      <div class="flex items-center text-sm">
+        <svg class="w-4 h-4 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <span class="font-medium text-gray-900"><%= list.pending_todos_count %></span>
+        <span class="text-gray-500 ml-1">pending</span>
+      </div>
+    </div>
+
     <div class="flex items-center justify-between pt-4 border-t border-gray-200">
-      <div class="flex space-x-3">
+      <div class="flex space-x-4">
         <%= link_to list, class: "text-sm text-indigo-600 hover:text-indigo-800 font-medium transition-colors" do %>
           View
         <% end %>
