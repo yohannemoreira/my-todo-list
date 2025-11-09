@@ -4,7 +4,7 @@
   <div>
     <%= form.label :name, t('lists.form.name_label'), class: "block text-sm font-medium text-gray-700 mb-2" %>
     <%= form.text_field :name, 
-        class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm #{'border-red-300' if list.errors[:name].any?}",
+        class: "block w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none transition-all duration-200 text-base #{'border-red-300 focus:border-red-500 focus:ring-red-200' if list.errors[:name].any?}",
         placeholder: t('lists.form.name_placeholder') %>
     <% if list.errors[:name].any? %>
       <p class="mt-2 text-sm text-red-600"><%= list.errors[:name].first %></p>
@@ -15,9 +15,8 @@
     <%= form.label :description, t('lists.form.description_label'), class: "block text-sm font-medium text-gray-700 mb-2" %>
     <%= form.text_area :description, 
         rows: 4,
-        class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm",
+        class: "block w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none transition-all duration-200 text-base resize-none",
         placeholder: t('lists.form.description_placeholder') %>
-    <p class="mt-2 text-sm text-gray-500"><%= t('lists.form.description_hint') %></p>
   </div>
 
   <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">

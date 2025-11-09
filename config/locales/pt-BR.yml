@@ -68,7 +68,6 @@ pt-BR:
       name_placeholder: "Digite o nome da lista"
       description_label: "Descrição"
       description_placeholder: "Digite a descrição da lista (opcional)"
-      description_hint: "Breve descrição do propósito desta lista."
       create_button: "Criar Lista"
       update_button: "Atualizar Lista"
     
@@ -115,7 +114,6 @@ pt-BR:
       name_placeholder: "Digite o nome da tarefa"
       description_label: "Descrição"
       description_placeholder: "Digite a descrição da tarefa (opcional)"
-      description_hint: "Forneça detalhes adicionais sobre esta tarefa."
       completed_label: "Concluída"
       completed_hint: "Marcar esta tarefa como concluída"
       create_button: "Criar Tarefa"

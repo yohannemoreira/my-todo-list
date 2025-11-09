@@ -68,7 +68,6 @@ en:
       name_placeholder: "Enter list name"
       description_label: "Description"
       description_placeholder: "Enter list description (optional)"
-      description_hint: "Brief description of what this list is for."
       create_button: "Create List"
       update_button: "Update List"
     
@@ -115,7 +114,6 @@ en:
       name_placeholder: "Enter task name"
       description_label: "Description"
       description_placeholder: "Enter task description (optional)"
-      description_hint: "Provide additional details about this task."
       completed_label: "Completed"
       completed_hint: "Mark this task as completed"
       create_button: "Create Task"
